@@ -1,4 +1,4 @@
-## Hi my name is Gökhan Molla getasew
+## Hi my name is Gökhan Molla 
 <p align="center"> <img src="https://github-readme-stats.vercel.app/api?username=molla202&show_icons=true&theme=gotham" alt="Molla Getasew" />
 
 <!--
