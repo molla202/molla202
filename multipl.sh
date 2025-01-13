@@ -59,7 +59,7 @@ read -p "Account ID: " IDENTIFIER
 read -p "Set your PIN: " PIN
 
 echo "Binding account with ID: $IDENTIFIER and PIN: $PIN..."
-multiple-cli bind --bandwidth-download 100 --identifier $IDENTIFIER --pin $PIN --storage 200 --bandwidth-upload 100
+multiple-cli bind --bandwidth-download 1000 --identifier $IDENTIFIER --pin $PIN --storage 10000 --bandwidth-upload 1000
 
 echo "Yükledik Gardaş Baa bakim çalışıyormu"
 echo "CoreNode Community"
