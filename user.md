@@ -2,7 +2,7 @@
 <p align="center"> <img src="https://github-readme-stats.vercel.app/api?username=molla202&show_icons=true&theme=gotham" alt="Molla Getasew" />
 
 ### 🎪 Mainnet And important events
-
+- ⚡ Dymension 🏃 mainnet (foundation delegation) validator https://explorer.corenodehq.com/dymension/staking/dymvaloper1hnjgqfupe7xy5cmjffu56fkpu4uva9sluh7mkh
 - ⚡ Source netwrok 🏃 mainnet&testnet (foundation delegation) validator https://explorer.corenodehq.com/source/staking/sourcevaloper12xtalgwjakzdz4q8s05zkm0a3nkr5wlua77q2k
 - ⚡ Elys network selected mainnet genesis validator and now 🏃 run testnet https://explorer.corenodehq.com/ELYS%20Testnet/staking/elysvaloper1ut8qdryqjlrhgfup20yuvmgtpa5892gntn7n0g
 - ⚡ Tangle mainnet&testnet 🏃 validator https://polkadot.js.org/apps/?rpc=wss://rpc.tangle.tools#/staking
