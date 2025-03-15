@@ -62,7 +62,7 @@ chmod +x junctiond-linux-amd64
 ```
 ```
 mkdir -p $HOME/.junction/cosmovisor/genesis/bin
-mv $HOME/junctiond-linux-amd64 $HOME/.junction/cosmovisor/genesis/bin/junctiond
+mv $HOME/junctiond-linux-amd64 $HOME/.junctiond/cosmovisor/genesis/bin/junctiond
 ```
 ```
 sudo ln -s $HOME/.junctiond/cosmovisor/genesis $HOME/.junctiond/cosmovisor/current -f
