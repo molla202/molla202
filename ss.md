@@ -182,7 +182,7 @@ junctiond keys add wallet --keyring-backend os --recover
 ### Gentx oluşturma
 NOT: genesis seçildiyseniz bunuda yapacanız başka yok başlatma ve genesis ekleme falan sonra olacak.
 ```
-junctiond genesis add-genesis-account <key-name> 100000000000umaf  
+junctiond genesis add-genesis-account wallet 100000000000umaf  
 junctiond genesis gentx wallet 100000000000umaf \  
   --chain-id varanasi-1 \  
   --moniker "" \
