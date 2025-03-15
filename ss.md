@@ -182,20 +182,22 @@ junctiond keys add wallet --keyring-backend os --recover
 ### Gentx oluşturma
 NOT: genesis seçildiyseniz bunuda yapacanız başka yok başlatma ve genesis ekleme falan sonra olacak. yane bunuda yaptıktan sonra en alttaki ayrı kısımda pr atılışı yazıyor.
 ```
-junctiond genesis add-genesis-account wallet 100000000000umaf  
-junctiond genesis gentx wallet 100000000000umaf \  
-  --chain-id varanasi-1 \  
+junctiond genesis add-genesis-account wallet 100000000000umaf
+```
+```
+junctiond genesis gentx wallet 100000000000umaf \
+  --chain-id varanasi-1 \
   --moniker "" \
   --identity="" \
   --website="" \
   --details="" \
-  --security-contact="" \ 
-  --commission-rate "0.10" \  
-  --commission-max-rate "0.20" \  
-  --commission-max-change-rate "0.01" \  
-  --min-self-delegation "1" \  
-  --pubkey "$(junctiond tendermint show-validator)" \  
-  --keyring-backend os 
+  --security-contact="" \
+  --commission-rate "0.10" \
+  --commission-max-rate "0.20" \
+  --commission-max-change-rate "0.01" \
+  --min-self-delegation "1" \
+  --pubkey "$(junctiond tendermint show-validator)" \
+  --keyring-backend os
 ```
 ### Validator oluştur
 Not: pubkey alalım
