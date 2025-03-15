@@ -65,8 +65,8 @@ mkdir -p $HOME/.junction/cosmovisor/genesis/bin
 mv $HOME/junctiond-linux-amd64 $HOME/.junction/cosmovisor/genesis/bin/junctiond
 ```
 ```
-sudo ln -s $HOME/.junction/cosmovisor/genesis $HOME/.junction/cosmovisor/current -f
-sudo ln -s $HOME/.junction/cosmovisor/current/bin/junctiond /usr/local/bin/junctiond -f
+sudo ln -s $HOME/.junctiond/cosmovisor/genesis $HOME/.junctiond/cosmovisor/current -f
+sudo ln -s $HOME/.junctiond/cosmovisor/current/bin/junctiond /usr/local/bin/junctiond -f
 ```
 ### 🚧Cosmovisor kuralım
 ```
@@ -85,10 +85,10 @@ ExecStart=$(which cosmovisor) run start
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
-Environment="DAEMON_HOME=$HOME/.junction"
+Environment="DAEMON_HOME=$HOME/.junctiond"
 Environment="DAEMON_NAME=junctiond"
 Environment="UNSAFE_SKIP_BACKUP=true"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.junction/cosmovisor/current/bin"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.junctiond/cosmovisor/current/bin"
 
 [Install]
 WantedBy=multi-user.target
@@ -106,8 +106,8 @@ junctiond init node-adi-yaz --chain-id varanasi-1
 ### 🚧Genesis ve addrbook
 NOT: gensissen yapma sonra 
 ```
-curl -L /main/addrbook.json > $HOME/.junction/config/addrbook.json
-curl -L /main/genesis.json > $HOME/.junction/config/genesis.json
+curl -L /main/addrbook.json > $HOME/.junctiond/config/addrbook.json
+curl -L /main/genesis.json > $HOME/.junctiond/config/genesis.json
 ```
 ### 🚧Port
 ```
@@ -121,7 +121,7 @@ s%:9090%:${J_PORT}090%g;
 s%:9091%:${J_PORT}091%g;
 s%:8545%:${J_PORT}545%g;
 s%:8546%:${J_PORT}546%g;
-s%:6065%:${J_PORT}065%g" $HOME/.junction/config/app.toml
+s%:6065%:${J_PORT}065%g" $HOME/.junctiond/config/app.toml
 ```
 ### Port
 ```
@@ -130,35 +130,35 @@ s%:26657%:${J_PORT}657%g;
 s%:6060%:${J_PORT}060%g;
 s%:26656%:${J_PORT}656%g;
 s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${J_PORT}656\"%;
-s%:26660%:${J_PORT}660%g" $HOME/.junction/config/config.toml
+s%:26660%:${J_PORT}660%g" $HOME/.junctiond/config/config.toml
 ```
 ### 🚧Seed ve Peer
 ```
 peers=""
 sed -i 's|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.junction/config/config.toml
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.junction/config/config.toml
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.junctiond/config/config.toml
 seeds="2d1ea4833843cc1433e3c44e69e297f357d2d8bd@5.78.118.106:26656"
-sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.junction/config/config.toml
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.junctiond/config/config.toml
 
 ```
 
 ### 🚧Pruning
 ```
-sed -i -e "s/^pruning *=.*/pruning = \"custom\"/" $HOME/.junction/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.junction/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"50\"/" $HOME/.junction/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"custom\"/" $HOME/.junctiond/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.junctiond/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"50\"/" $HOME/.junctiond/config/app.toml
 ```
 ### 🚧Gas ve index ayarı
 ```
-sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.025amf"|g' $HOME/.junction/config/app.toml
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.junction/config/config.toml
-sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.junction/config/config.toml
+sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.025amf"|g' $HOME/.junctiond/config/app.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.junctiond/config/config.toml
+sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.junctiond/config/config.toml
 ```
 ### Snap 
 NOT: genesis sen yapma
 ```
-junctiond tendermint unsafe-reset-all --home $HOME/.junction
-curl -L http://37.120.189.81/airchain_testnet/airv_snap.tar.lz4 | tar -I lz4 -xf - -C $HOME/.junction
+junctiond tendermint unsafe-reset-all --home $HOME/.junctiond
+curl -L http://37.120.189.81/airchain_testnet/airv_snap.tar.lz4 | tar -I lz4 -xf - -C $HOME/.junctiond
 ```
 ### 🚧Başlatalım
 NOT: gensissen yapma
