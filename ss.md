@@ -152,7 +152,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"50\"/" $HOME/.junctiond
 ```
 ### 🚧Gas ve index ayarı
 ```
-sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.025amf"|g' $HOME/.junctiond/config/app.toml
+sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.025umaf"|g' $HOME/.junctiond/config/app.toml
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.junctiond/config/config.toml
 sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.junctiond/config/config.toml
 ```
