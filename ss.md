@@ -57,12 +57,12 @@ source $HOME/.bash_profile
 ```
 ### 🚧Dosyaları çekelim
 ```
-wget https://github.com/airchains-network/junction/releases/download/v0.3.1/junctiond
-chmod +x junctiond
+wget https://github.com/airchains-network/junction/releases/download/v0.3.1/junctiond-linux-amd64 
+chmod +x junctiond-linux-amd64 
 ```
 ```
 mkdir -p $HOME/.junction/cosmovisor/genesis/bin
-mv $HOME/junctiond $HOME/.junction/cosmovisor/genesis/bin
+mv $HOME/junctiond-linux-amd64 $HOME/.junction/cosmovisor/genesis/bin/junctiond
 ```
 ```
 sudo ln -s $HOME/.junction/cosmovisor/genesis $HOME/.junction/cosmovisor/current -f
