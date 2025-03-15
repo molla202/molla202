@@ -185,8 +185,7 @@ NOT: genesis seçildiyseniz bunuda yapacanız başka yok başlatma ve genesis ek
 junctiond genesis add-genesis-account wallet 100000000000umaf
 ```
 ```
-junctiond genesis gentx wallet 100000000000umaf \
-  --chain-id varanasi-1 \
+junctiond genesis gentx wallet 100000000000umaf --chain-id varanasi-1 \
   --moniker "" \
   --identity="" \
   --website="" \
