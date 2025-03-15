@@ -180,7 +180,7 @@ junctiond keys add wallet --keyring-backend os
 junctiond keys add wallet --keyring-backend os --recover
 ```
 ### Gentx oluşturma
-NOT: genesis seçildiyseniz bunuda yapacanız başka yok başlatma ve genesis ekleme falan sonra olacak.
+NOT: genesis seçildiyseniz bunuda yapacanız başka yok başlatma ve genesis ekleme falan sonra olacak. yane bunuda yaptıktan sonra en alttaki ayrı kısımda pr atılışı yazıyor.
 ```
 junctiond genesis add-genesis-account wallet 100000000000umaf  
 junctiond genesis gentx wallet 100000000000umaf \  
@@ -233,6 +233,62 @@ junctiond tx staking delegate $(junctiond keys show cüzdan-adi-yaz --bech val -
 ```
 junctiond tx slashing unjail --from cüzdan-adi-yaz --chain-id varanasi-1 --fees 5000amf --node=http://localhost:63657 -y
 ```
+
+
+
+### Genesis PR
+
+- gentx işlemini yapınca dosya yolunu zaten gösteriyor ordan alıp pcnize çekin
+
+![image](https://github.com/user-attachments/assets/c721bbb9-69e1-4d71-8530-5ee1bc11c78b)
+
+- sonra forklayalım bu repoyu https://github.com/Core-Node-Team/junction-resources/tree/main
+
+- sonra klasöre girelim ve upload seçip gentx dosyamızı atalım
+
+![image](https://github.com/user-attachments/assets/db48a747-3e75-4221-82c1-904ec69ef428)
+
+![image](https://github.com/user-attachments/assets/9230bcc6-b2c0-4fac-8b10-579e551b40a7)
+
+![image](https://github.com/user-attachments/assets/4592221d-638b-4ef0-8506-ca0e923cf5c3)
+
+- tut çerçeve içine gentx dosyasını at commit de yuklesin
+
+![image](https://github.com/user-attachments/assets/1dcac528-095a-4e30-9cd1-fa5f275274ac)
+
+- pull request diyelim.
+
+![image](https://github.com/user-attachments/assets/77b8642b-f78b-4ebe-b039-d146ade6c87c)
+
+![image](https://github.com/user-attachments/assets/63bd025f-450a-4117-b64d-ba2fd9951a49)
+
+![image](https://github.com/user-attachments/assets/f7e72ad3-79f5-4294-be3c-c00372f5fc5e)
+
+![image](https://github.com/user-attachments/assets/090d84a4-2e02-499d-a66e-efb4d6728d29)
+
+![image](https://github.com/user-attachments/assets/c591bde4-5e42-4415-a193-091982e8f359)
+
+![image](https://github.com/user-attachments/assets/42435785-ad1b-40eb-9694-d4aa653948ed)
+
+- tamasın hayırlısı olsun. bundan sonra yayınlanacak genesis dosyasını ekleyip başlatmak kalıyor. hersey hazır olsun diye kurulum şeklide yaptık. zira öbür türlü kurmaklada uğraşmayalım kafa karışmasın.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
