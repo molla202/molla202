@@ -61,7 +61,7 @@ wget https://github.com/airchains-network/junction/releases/download/v0.3.1/junc
 chmod +x junctiond-linux-amd64 
 ```
 ```
-mkdir -p $HOME/.junction/cosmovisor/genesis/bin
+mkdir -p $HOME/.junctiond/cosmovisor/genesis/bin
 mv $HOME/junctiond-linux-amd64 $HOME/.junctiond/cosmovisor/genesis/bin/junctiond
 ```
 ```
