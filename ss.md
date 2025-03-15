@@ -133,11 +133,12 @@ s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${J_PORT}65
 s%:26660%:${J_PORT}660%g" $HOME/.junctiond/config/config.toml
 ```
 ### 🚧Seed ve Peer
+NOT: genesissen yapma
 ```
 peers=""
 sed -i 's|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.junctiond/config/config.toml
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.junctiond/config/config.toml
-seeds="2d1ea4833843cc1433e3c44e69e297f357d2d8bd@5.78.118.106:26656"
+seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.junctiond/config/config.toml
 
 ```
