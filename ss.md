@@ -182,10 +182,10 @@ junctiond keys add wallet --keyring-backend os --recover
 ### Gentx oluşturma
 NOT: genesis seçildiyseniz bunuda yapacanız başka yok başlatma ve genesis ekleme falan sonra olacak. yane bunuda yaptıktan sonra en alttaki ayrı kısımda pr atılışı yazıyor.
 ```
-junctiond genesis add-genesis-account wallet 100000000000umaf
+junctiond genesis add-genesis-account wallet 100000000000uamf
 ```
 ```
-junctiond genesis gentx wallet 100000000000umaf --chain-id varanasi-1 \
+junctiond genesis gentx wallet 100000000000uamf --chain-id varanasi-1 \
   --moniker "" \
   --identity="" \
   --website="" \
@@ -224,11 +224,11 @@ Not: alttaki kodu düzenleyin sonra üsteki kodu yazıp düzenlediğinizi içine
 }
 ```
 ```
-junctiond tx staking create-validator $HOME/validator.json --from cüzdan-adi --chain-id varanasi-1 --fees 5000amf --node http://localhost:63657
+junctiond tx staking create-validator $HOME/validator.json --from cüzdan-adi --chain-id varanasi-1 --fees 5000uamf --node http://localhost:63657
 ```
 ### Kendinize stake
 ```
-junctiond tx staking delegate $(junctiond keys show cüzdan-adi-yaz --bech val -a) 1000000amf --from cüzdan-adi-yaz --chain-id varanasi-1 --fees 5000amf --node=http://localhost:63657 -y
+junctiond tx staking delegate $(junctiond keys show cüzdan-adi-yaz --bech val -a) 1000000amf --from cüzdan-adi-yaz --chain-id varanasi-1 --fees 5000uamf --node=http://localhost:63657 -y
 ```
 ### Jailden çıkma
 ```
