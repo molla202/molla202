@@ -297,9 +297,10 @@ curl -L https://github.com/airchains-network/junction-resources/releases/downloa
 sudo systemctl daemon-reload && sudo systemctl start junctiond && sudo journalctl -u junctiond -f --no-hostname -o cat
 ```
 
+NOT: artık başlamasını bekleyeceğiz zamanı gelince. extra bişi yok
 
 
-
+![image](https://github.com/user-attachments/assets/373a8c65-4928-4782-8a9e-8a3ca1755cbf)
 
 
 
