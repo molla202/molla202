@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# Başlık gösterimi
 sleep 1
 echo -e '\e[0;32m'
 echo " ▄████████  ▄██████▄     ▄████████    ▄████████     ███▄▄▄▄    ▄██████▄  ████████▄     ▄████████ ";
@@ -13,53 +13,64 @@ echo "███    ███ ███    ███   ███    ███   �
 echo "████████▀   ▀██████▀    ███    ███   ██████████      ▀█   █▀   ▀██████▀  ████████▀    ██████████ ";
 echo "                        ███    ███                                                               ";
 echo ""
-echo -e '\e[0m' 
+echo -e '\e[0m'
 sleep 3
-sleep 2
 
+# Dosyaları indirin ve klasörü oluşturun
+echo "Dosyaları indiriliyor ve klasör oluşturuluyor..."
+mkdir -p $HOME/selfcore
+cd $HOME/selfcore
+wget https://github.com/molla202/molla202/raw/main/cw20_base.wasm
+echo "Dosyalar başarıyla indirildi ve klasör oluşturuldu."
 
-echo "Starting system update..."
-sudo apt update && sudo apt upgrade -y
+# Kullanıcıdan gerekli bilgileri alın
+read -p "Lütfen cüzdan adınızı girin: " KEY_NAME
+read -p "Lütfen token adını girin: " TOKEN_NAME
+read -p "Lütfen token sembolünü girin: " TOKEN_SYMBOL
+read -p "Lütfen cüzdan adresinizi girin: " WALLET_ADDRESS
 
-echo "Checking system architecture..."
-ARCH=$(uname -m)
-if [[ "$ARCH" == "x86_64" ]]; then
-    CLIENT_URL="https://cdn.app.multiple.cc/client/linux/x64/multipleforlinux.tar"
-elif [[ "$ARCH" == "aarch64" ]]; then
-    CLIENT_URL="https://cdn.app.multiple.cc/client/linux/arm64/multipleforlinux.tar"
-else
-    echo "Unsupported system architecture: $ARCH"
-    exit 1
-fi
+# Adresleri alın ve uyarıyı gösterin
+echo "Lütfen göndermek istediğiniz adresleri virgülle ayırarak girin (örn: adres1,adres2):"
+read -p "Adresler: " ADDRESSES_INPUT
 
-echo "Downloading the client from $CLIENT_URL..."
-wget $CLIENT_URL -O multipleforlinux.tar
+# Adresleri diziye çevirin
+IFS=',' read -r -a ADDRESSES <<< "$ADDRESSES_INPUT"
 
-echo "Extracting files..."
-tar -xvf multipleforlinux.tar
+# Contract dosyasının yolunu tanımlayın
+CONTRACT_WASM="$HOME/selfcore/cw20_base.wasm"
 
-cd multipleforlinux
+# INIT değişkenini oluşturun
+INIT=$(jq -n \
+  --arg name "$TOKEN_NAME" \
+  --arg symbol "$TOKEN_SYMBOL" \
+  --arg address "$WALLET_ADDRESS" \
+  '{name: $name, symbol: $symbol, decimals: 6, initial_balances: [{address: $address, amount: "5000000"}], mint: {minter: $address}, marketing: {}}')
 
-echo "Granting permissions..."
-chmod +x ./multiple-cli
-chmod +x ./multiple-node
+# Contract'ı deploy edin
+echo "Contract deploy ediliyor..."
+TX_HASH=$(selfchaind tx wasm store $CONTRACT_WASM --from $KEY_NAME --gas auto --gas-adjustment 1.4 --gas-prices="0.005uslf" -y --output json | jq -r '.txhash')
+echo "Contract başarıyla deploy edildi. TxHash: $TX_HASH"
 
-echo "Adding directory to system PATH..."
-echo "PATH=\$PATH:$(pwd)" >> ~/.bash_profile
-source ~/.bash_profile
+# Son işlemi alın
+LATEST_TX=$(selfchaind q txs --events "message.action='store_code'" --page 1 --limit 1 --output json | jq -r '.txs[0].txhash')
 
-echo "Setting permissions..."
-chmod -R 777 $(pwd)
+# Code ID'yi alın
+CODE_ID=$(selfchaind q tx $LATEST_TX --output json | jq -r '.logs[0].events[] | select(.type == "store_code") | .attributes[] | select(.key == "code_id") | .value')
 
-echo "Launching multiple-node..."
-nohup ./multiple-node > output.log 2>&1 &
+# Token'ı oluşturun
+echo "Token oluşturuluyor..."
+selfchaind tx wasm instantiate $CODE_ID "$INIT" --from $KEY_NAME --label "test" --gas auto --gas-adjustment 1.4 --gas-prices="0.005uslf" --no-admin -y
+echo "Token başarıyla oluşturuldu."
 
-echo "Hesap adı ve PIN girin (hani bir kod verdi ya mubarek o işte):"
-read -p "Account ID: " IDENTIFIER
-read -p "Set your PIN: " PIN
+# Contract adresini alın
+CONTRACT=$(selfchaind query wasm list-contract-by-code $CODE_ID --output json | jq -r '.contracts[-1]')
 
-echo "Binding account with ID: $IDENTIFIER and PIN: $PIN..."
-multiple-cli bind --bandwidth-download 1000 --identifier $IDENTIFIER --pin $PIN --storage 10000 --bandwidth-upload 1000
+# Her adrese token gönderin
+echo "Token gönderimi başlıyor..."
+for ADDRESS in "${ADDRESSES[@]}"; do
+  TRANSFER=$(jq -n --arg recipient "$ADDRESS" '{"transfer":{"recipient":$recipient,"amount":"100"}}')
+  TX_HASH=$(selfchaind tx wasm execute $CONTRACT "$TRANSFER" --gas auto --gas-adjustment 1.4 --gas-prices="0.005uslf" --from $KEY_NAME -y --output json | jq -r '.txhash')
+  echo "Token başarıyla gönderildi. TxHash: $TX_HASH"
+done
 
-echo "Yükledik Gardaş Baa bakim çalışıyormu"
-echo "CoreNode Community"
+echo "İşlemler başarıyla tamamlandı."
