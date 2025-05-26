@@ -116,6 +116,10 @@ sed -i \
   -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
   -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
   $HOME/.tacchaind/config/app.toml
+
+
+sudo sed -i 's/timeout_commit = "5s"/timeout_commit = "2s"/' /root/.tacchaind/config/config.toml
+
 ```
 ### 🚧Port değiştiriyoruz
 ```
@@ -136,6 +140,9 @@ s%:6060%:${TAC_PORT}060%g;
 s%:26656%:${TAC_PORT}656%g;
 s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${TAC_PORT}656\"%;
 s%:26660%:${TAC_PORT}660%g" $HOME/.tacchaind/config/config.toml
+
+
+
 ```
 ### 🚧Snap
 ```
