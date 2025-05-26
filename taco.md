@@ -165,3 +165,26 @@ curl -o - -L https://snapshot.corenodehq.xyz/tac_testnet/tac_snap.tar.lz4  | lz4
 ```
 sudo systemctl restart tacchaind.service && sudo journalctl -u tacchaind.service -f --no-hostname -o cat
 ```
+
+
+#### vali olustur
+```
+echo "{\"pubkey\":{\"@type\":\"/cosmos.crypto.ed25519.PubKey\",\"key\":\"$(tacchaind tendermint show-validator | grep -Po '\"key\":\s*\"\K[^"]*')\"},
+    \"amount\": \"miktar000000000000000000utac\",
+    \"moniker\": \"test\",
+    \"identity\": \"\",
+    \"website\": \"\",
+    \"security\": \"\",
+    \"details\": \"CR\",
+    \"commission-rate\": \"0.1\",
+    \"commission-max-rate\": \"0.2\",
+    \"commission-max-change-rate\": \"0.01\",
+    \"min-self-delegation\": \"1\"
+}" > validatortx.json
+```
+```
+tacchaind tx staking create-validator validatortx.json \
+    --from wallet \
+    --chain-id tacchain_2391-1 \
+    -y
+```
