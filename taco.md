@@ -54,6 +54,19 @@ mkdir -p $HOME/.tacchaind/cosmovisor/genesis/bin
 mv build/tacchaind $HOME/.tacchaind/cosmovisor/genesis/bin/
 rm -rf build
 ```
+
+```
+rm -rf $HOME/tacchain
+cd $HOME
+git clone https://github.com/TacBuild/tacchain.git
+cd tacchain
+git checkout v0.0.10
+make build
+```
+```
+mkdir -p $HOME/.tacchaind/cosmovisor/upgrades/v0.0.10/bin
+mv build/tacchaind $HOME/.tacchaind/cosmovisor/upgrades/v0.0.10/bin/tacchaind
+```
 ### 🚧Sistem kısayolları
 ```
 sudo ln -s $HOME/.tacchaind/cosmovisor/genesis $HOME/.tacchaind/cosmovisor/current -f
@@ -146,7 +159,7 @@ s%:26660%:${TAC_PORT}660%g" $HOME/.tacchaind/config/config.toml
 ```
 ### 🚧Snap
 ```
-soon
+curl -o - -L https://snapshot.corenodehq.xyz/tac_testnet/tac_snap.tar.lz4  | lz4 -c -d - | tar -x -C $HOME/.tacchaind
 ```
 ### 🚧Başlatıyoruz...
 ```
