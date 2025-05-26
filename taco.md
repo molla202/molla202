@@ -39,22 +39,7 @@ go :D
 
 
 ### 🚧Dosyaları çekıyoruz
-```
-cd $HOME
-git clone https://github.com/TacBuild/tacchain.git
-cd tacchain
-git checkout v0.0.8
-```
-```
-make build
-```
 ### 🚧Cosmovisor ayarlıyoruz
-```
-mkdir -p $HOME/.tacchaind/cosmovisor/genesis/bin
-mv build/tacchaind $HOME/.tacchaind/cosmovisor/genesis/bin/
-rm -rf build
-```
-
 ```
 cd $HOME
 rm -rf $HOME/tacchain
@@ -62,6 +47,10 @@ git clone https://github.com/TacBuild/tacchain.git
 cd tacchain
 git checkout v0.0.10
 make build
+```
+```
+mkdir -p $HOME/.tacchaind/cosmovisor/genesis/bin
+cp build/tacchaind $HOME/.tacchaind/cosmovisor/genesis/bin/
 ```
 ```
 mkdir -p $HOME/.tacchaind/cosmovisor/upgrades/v0.0.10/bin
@@ -167,9 +156,9 @@ sudo systemctl restart tacchaind.service && sudo journalctl -u tacchaind.service
 ```
 ### cüzdan öğrenme
 not: cüzdan adresi teyit lütfen keliemeleri rabbye import edip ordan aldığınız adresi faucete yapıstırın buyuk kucuk harf saçmalığı var burda maksat sunucuda cıkan adresle rabbyde cıkan aynımı teyit içindir.molla02 yerine kendi cüzdan adını yaz
-
+```
 echo "0x$(tacchaind debug addr $(tacchaind keys show molla202 -a) | grep hex | awk '{print $3}')"
-
+```
 #### vali olustur
 ```
 echo "{\"pubkey\":{\"@type\":\"/cosmos.crypto.ed25519.PubKey\",\"key\":\"$(tacchaind tendermint show-validator | grep -Po '\"key\":\s*\"\K[^"]*')\"},
