@@ -165,7 +165,10 @@ curl -o - -L https://snapshot.corenodehq.xyz/tac_testnet/tac_snap.tar.lz4  | lz4
 ```
 sudo systemctl restart tacchaind.service && sudo journalctl -u tacchaind.service -f --no-hostname -o cat
 ```
+### cüzdan öğrenme
+not: cüzdan adresi teyit lütfen keliemeleri rabbye import edip ordan aldığınız adresi faucete yapıstırın buyuk kucuk harf saçmalığı var burda maksat sunucuda cıkan adresle rabbyde cıkan aynımı teyit içindir.molla02 yerine kendi cüzdan adını yaz
 
+echo "0x$(tacchaind debug addr $(tacchaind keys show molla202 -a) | grep hex | awk '{print $3}')"
 
 #### vali olustur
 ```
