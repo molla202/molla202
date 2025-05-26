@@ -56,8 +56,8 @@ rm -rf build
 ```
 
 ```
-rm -rf $HOME/tacchain
 cd $HOME
+rm -rf $HOME/tacchain
 git clone https://github.com/TacBuild/tacchain.git
 cd tacchain
 git checkout v0.0.10
