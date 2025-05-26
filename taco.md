@@ -186,5 +186,7 @@ echo "{\"pubkey\":{\"@type\":\"/cosmos.crypto.ed25519.PubKey\",\"key\":\"$(tacch
 tacchaind tx staking create-validator validatortx.json \
     --from wallet \
     --chain-id tacchain_2391-1 \
+    --node http://localhost:59657 \
+    --fees 5000000000000000utac \
     -y
 ```
