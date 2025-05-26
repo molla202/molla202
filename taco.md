@@ -91,14 +91,13 @@ sudo systemctl enable tacchaind.service
 
 ### 🚧Node ayarları
 ```
-tacchaind config chain-id source-1
-tacchaind config keyring-backend file
-tacchaind config node tcp://localhost:12857
-```
-### 🚧Node kuruyoruz
-```
 tacchaind init node-adınız --chain-id tacchain_2391-1
 ```
+```
+echo "export TAC_PORT="59"" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
 ### 🚧indiriyoruz genesis ved addrbook
 ```
 curl -Ls https://raw.githubusercontent.com/TacBuild/tacchain/refs/heads/main/networks/tacchain_2391-1/genesis.json > $HOME/.tacchaind/config/genesis.json
