@@ -187,6 +187,5 @@ tacchaind tx staking create-validator validatortx.json \
     --from wallet \
     --chain-id tacchain_2391-1 \
     --node http://localhost:59657 \
-    --fees 5000000000000000utac \
-    -y
+    --gas auto --gas-adjustment 1.4 --fees 9503625000000000utac -y
 ```
