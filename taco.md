@@ -51,7 +51,7 @@ make build
 ### 🚧Cosmovisor ayarlıyoruz
 ```
 mkdir -p $HOME/.tacchaind/cosmovisor/genesis/bin
-mv bin/sourced $HOME/.tacchaind/cosmovisor/genesis/bin/
+mv bin/tacchaind $HOME/.tacchaind/cosmovisor/genesis/bin/
 rm -rf build
 ```
 ### 🚧Sistem kısayolları
