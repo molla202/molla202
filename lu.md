@@ -222,7 +222,9 @@ rm -f $(which lumerad)
 rm -rf .lumera
 ```
 ### Gentx
+
 NOT: forklayacağınız ve gentxisini koyacağız yol https://github.com/LumeraProtocol/lumera-networks/tree/master/mainnet/gentx
+
 NOT: alttakileri değiştir sonra kopyala yapıstır.
 ```
 CHAIN_ID="lumera-mainnet-1"
