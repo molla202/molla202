@@ -279,10 +279,10 @@ lumerad genesis validate
 Moniker: corenode
 
 ## Checklist
-- [✅] I have backed up my validator keys securely
-- [✅] I have stored my mnemonic phrase safely
-- [✅] I have verified new genesis file is valid (I ran `lumerad genesis validate`)
-- [✅] I have verified my gentx file is valid
-- [✅] I will be available during the network launch
+- [ ] I have backed up my validator keys securely
+- [ ] I have stored my mnemonic phrase safely
+- [ ] I have verified new genesis file is valid (I ran `lumerad genesis validate`)
+- [ ] I have verified my gentx file is valid
+- [ ] I will be available during the network launch
 ```
 
