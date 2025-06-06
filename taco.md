@@ -181,3 +181,34 @@ tacchaind tx staking create-validator validatortx.json \
     --node http://localhost:59657 \
     --gas auto --gas-adjustment 1.4 --fees 9503625000000000utac -y
 ```
+
+
+### Güncelleme
+```
+cd ~
+rm -rf tacchain
+git clone https://github.com/TacBuild/tacchain.git
+cd tacchain
+git checkout v0.0.11
+make install
+/root/go/bin/tacchaind version
+mkdir -p /root/.tacchaind/cosmovisor/upgrades/v0.0.11/bin
+cp /root/go/bin/tacchaind /root/.tacchaind/cosmovisor/upgrades/v0.0.11/bin/
+chmod +x /root/.tacchaind/cosmovisor/upgrades/v0.0.11/bin/tacchaind
+```
+```
+cat <<EOF > /root/.tacchaind/cosmovisor/upgrades/v0.0.11/upgrade-info.json
+{
+  "name": "v0.0.11",
+  "height": 1297619,
+  "info": "allow non-EOA to stake via evm staking precompile and force 0 inflation"
+}
+EOF
+```
+```
+ln -sfn /root/.tacchaind/cosmovisor/upgrades/v0.0.11 /root/.tacchaind/cosmovisor/current
+```
+```
+systemctl restart tacchaind
+journalctl -u tacchaind -f --no-pager
+```
