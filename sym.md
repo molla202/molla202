@@ -278,4 +278,15 @@ symphonyd genesis gentx wallet 1000000note --chain-id symphony-1 \
   --pubkey "$(symphonyd tendermint show-validator)"
 ```
 
-  
+### PR atma
+
+https://github.com/Orchestra-Labs/symphony
+
+- forklayın ve gentx dosyanızı networks/symphony-1/gentxs/   içersine atın kendi forkunuzdaki sizdegentxs dosyası yoktur. 
+
+![image](https://github.com/user-attachments/assets/98df5738-bfb5-4d0d-9927-1af6b7d89beb)
+
+
+- create new file deyin dosya yoluna gentxs/adınız.json ekleyip gentx içeriğinizi içine kopyalayıp kaydedin. zaten / koyunca adınız.json girince anlayacaksınız gerisi next next.
+
+![image](https://github.com/user-attachments/assets/46d7df00-6758-4572-861e-2750fd97fa75)
