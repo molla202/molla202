@@ -265,7 +265,7 @@ sed -i "/SYMPHONY_/d" $HOME/.bash_profile
 ### GENTX
 Not : wallet adınızı farklı yaptıysanız ona göre ayarlayın. kendi genesislerinde zaten test cüzdanalrımız 2 bakiye ile eklenmiş 1 bakiye ile olusturucaz.
 ```
-symphonyd genesis gentx wallet 1000000note --chain-id symphony-1 \
+symphonyd gentx wallet 1000000note --chain-id symphony-1 \
   --moniker "" \
   --identity="" \
   --website="" \
