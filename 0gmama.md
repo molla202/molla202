@@ -29,7 +29,7 @@ cast call \
 ### İmza Oluştur
 ```
 0gchaind deposit create-validator \
-    0x1E776a6b65892EC60537a885c17B820301E05400 \
+    yukarda-aldığın-adresi-yazıcan \
     32000000000 \
     /root/.0gchaind/0g-home/0gchaind-home/config/genesis.json \
     --home /root/.0gchaind/0g-home/0gchaind-home \
