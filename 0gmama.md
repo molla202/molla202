@@ -103,7 +103,18 @@ contract ValidatorExample {
 
 
 
-
+### Cast ile validator oluşturma
+```
+cast send 0xea224dBB52F57752044c0C86aD50930091F561B9 \
+"createAndInitializeValidatorIfNecessary((string,string,string,string,string),uint32,uint96,bytes,bytes)" \
+'("MollaValidator","molla-keybase","https://molla-node.com","security@molla.com","Güvenli ve hızlı node")' \
+50000 1 \
+pubkey-yaz \
+singature-yaz \
+--value 32ether \
+--rpc-url https://evmrpc-testnet.0g.ai \
+--private-key 0xSENIN_PRIVATE_KEYIN
+```
 
 
 
