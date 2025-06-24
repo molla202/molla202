@@ -24,7 +24,7 @@ cast call \
     0xea224dBB52F57752044c0C86aD50930091F561B9 \
     "computeValidatorAddress(bytes)(address)" \
     "pub-key-yaz" \
-    --rpc-url https://evmrpc-testnet.0g.ai
+    --rpc-url https://0g-galileo-evmrpc.corenodehq.xyz
 ```
 ### İmza Oluştur
 ```
@@ -112,7 +112,7 @@ cast send 0xea224dBB52F57752044c0C86aD50930091F561B9 \
 pubkey-yaz \
 singature-yaz \
 --value 32ether \
---rpc-url https://evmrpc-testnet.0g.ai \
+--rpc-url https://0g-galileo-evmrpc.corenodehq.xyz \
 --private-key 0xSENIN_PRIVATE_KEYIN
 ```
 
