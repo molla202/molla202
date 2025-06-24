@@ -116,7 +116,16 @@ singature-yaz \
 --private-key 0xSENIN_PRIVATE_KEYIN
 ```
 
+### Stake
+NOT: değer 1 olarak ayarlanmıştır.
 
-
+```
+cast send adres-alma-aldığınız-adres-yani-vali-adresi \
+"delegate(address)" \
+0xSeninCüzdanAdresin \
+--rpc-url https://0g-galileo-evmrpc.corenodehq.xyz \
+--private-key 0xSENIN_PRIVATE_KEYIN \
+--value 1000000000
+```
 
 
