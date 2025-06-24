@@ -127,5 +127,11 @@ cast send adres-alma-aldığınız-adres-yani-vali-adresi \
 --private-key 0xSENIN_PRIVATE_KEYIN \
 --value 1000000000
 ```
-
-
+### Vali bilgi güncelleme
+```
+cast send 0xVALIDATOR_KONTRAT_ADRESI \
+"updateDescription((string,string,string,string,string))" \
+'("YeniMolla","yeni-keybase","https://yenisite.com","güvenlik@site.com","Yepyeni açıklama")' \
+--rpc-url https://evmrpc-testnet.0g.ai \
+--private-key 0xSENIN_PRIVATE_KEYIN
+```
