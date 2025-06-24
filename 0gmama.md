@@ -111,7 +111,7 @@ cast send 0xea224dBB52F57752044c0C86aD50930091F561B9 \
 50000 1 \
 pubkey-yaz \
 singature-yaz \
---value 32ether \
+--value 32000000000 \
 --rpc-url https://0g-galileo-evmrpc.corenodehq.xyz \
 --private-key 0xSENIN_PRIVATE_KEYIN
 ```
