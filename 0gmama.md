@@ -30,7 +30,7 @@ cast call \
 ```
 0gchaind deposit create-validator \
     yukarda-aldığın-adresi-yazıcan \
-    32000000000 \
+    32000000000000000000 \
     /root/.0gchaind/0g-home/0gchaind-home/config/genesis.json \
     --home /root/.0gchaind/0g-home/0gchaind-home \
     --chaincfg.chain-spec=devnet
