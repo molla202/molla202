@@ -44,22 +44,14 @@ cast send 0xea224dBB52F57752044c0C86aD50930091F561B9 \
 50000 1 \
 pubkey-yaz \
 singature-yaz \
+--gas-limit 1000000 \
+--gas-price 50000000000 \
 --value 32000000000000000000 \
 --rpc-url https://0g-galileo-evmrpc.corenodehq.xyz \
 --private-key 0xSENIN_PRIVATE_KEYIN
 ```
 
-### Stake
-NOT: değer 1 olarak ayarlanmıştır.
 
-```
-cast send adres-alma-aldığınız-adres-yani-vali-adresi \
-"delegate(address)" \
-0xSeninCüzdanAdresin \
---rpc-url https://0g-galileo-evmrpc.corenodehq.xyz \
---private-key 0xSENIN_PRIVATE_KEYIN \
---value 1000000000000000000
-```
 ### Vali bilgi güncelleme
 ```
 cast send 0xVALIDATOR_KONTRAT_ADRESI \
