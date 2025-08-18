@@ -53,8 +53,8 @@ go version
 cd $HOME
 mkdir -p $HOME/lume
 cd lume
-wget https://github.com/LumeraProtocol/lumera/releases/download/v1.1.0/lumera_v1.1.0_linux_amd64.tar.gz
-tar xzvf lumera_v1.1.0_linux_amd64.tar.gz
+wget https://github.com/LumeraProtocol/lumera/releases/download/v1.6.1/lumera_v1.6.1_linux_amd64.tar.gz
+tar xzvf lumera_v1.6.1_linux_amd64.tar.gz
 chmod +x lumerad
 ```
 ```
