@@ -111,6 +111,7 @@ lumerad init "MONIKER" --chain-id lumera-mainnet-1
 ```
 ### 🚧Genesis ve addrbook
 ```
+curl -L https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/mainnet/claims.csv > $HOME/.lumera/config/claims.csv
 curl -L https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/heads/master/mainnet/genesis.json > $HOME/.lumera/config/genesis.json
 ```
 ### 🚧Port
