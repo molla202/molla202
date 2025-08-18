@@ -116,7 +116,7 @@ curl -L https://raw.githubusercontent.com/LumeraProtocol/lumera-networks/refs/he
 ```
 ### 🚧Port
 ```
-echo "export LUM_PORT="29"" >> $HOME/.bash_profile
+echo "export LUM_PORT="21"" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 ```
