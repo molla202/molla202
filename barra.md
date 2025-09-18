@@ -48,13 +48,23 @@ source $HOME/.bash_profile
 ### 🚧 Dosyaları çekelim ve kuralım
 
 ```
-cd $HOME
-wget -O wardend https://github.com/warden-protocol/wardenprotocol/releases/download/v0.7.0-rc3/wardend-v0.7.0-rc3-linux-amd64
-chmod +x wardend
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+```
+```
+cargo install just
+```
+```
+git clone https://github.com/warden-protocol/wardenprotocol.git
+cd wardenprotocol
+git checkout v0.7.0-rc3
+```
+```
+just wardend
 ```
 ```
 mkdir -p $HOME/.warden/cosmovisor/genesis/bin/
-mv $HOME/wardend $HOME/.warden/cosmovisor/genesis/bin/
+mv $HOME/wardenprotocol/build/wardend $HOME/.warden/cosmovisor/genesis/bin/
 ```
 ```
 sudo ln -s $HOME/.warden/cosmovisor/genesis $HOME/.warden/cosmovisor/current -f
