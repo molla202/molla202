@@ -53,6 +53,7 @@ wget -O wardend https://github.com/warden-protocol/wardenprotocol/releases/downl
 chmod +x wardend
 ```
 ```
+mkdir -p $HOME/.warden/cosmovisor/genesis/bin/
 mv $HOME/bin/wardend $HOME/.warden/cosmovisor/genesis/bin/
 ```
 ```
