@@ -54,7 +54,7 @@ chmod +x wardend
 ```
 ```
 mkdir -p $HOME/.warden/cosmovisor/genesis/bin/
-mv $HOME/bin/wardend $HOME/.warden/cosmovisor/genesis/bin/
+mv $HOME/wardend $HOME/.warden/cosmovisor/genesis/bin/
 ```
 ```
 sudo ln -s $HOME/.warden/cosmovisor/genesis $HOME/.warden/cosmovisor/current -f
