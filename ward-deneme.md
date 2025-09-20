@@ -104,7 +104,7 @@ sudo systemctl enable wardend
 ```
 ### 🚧 İnit
 ```
-wardend init "isim-yaz" --chain-id barra_9191-1
+wardend init "isim-yaz" --chain-id mainnet
 ```
 ### 🚧 Genesis addrbook
 ```
