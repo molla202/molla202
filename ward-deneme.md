@@ -286,7 +286,7 @@ wardend keys add wallet --recover
 wardend genesis add-genesis-account wallet 1000000000000000000award
 ```
 ```
-wardend genesis gentx wallet 1000000000000000000award --chain-id mainnet \
+wardend genesis gentx wallet 900000000000000000award --chain-id testlaunch_123123-1 \
   --moniker "" \
   --identity="" \
   --website="" \
@@ -296,6 +296,6 @@ wardend genesis gentx wallet 1000000000000000000award --chain-id mainnet \
   --commission-max-rate "0.20" \
   --commission-max-change-rate "0.01" \
   --min-self-delegation "1" \
-  --pubkey "$(wardend tendermint show-validator)"
+  --pubkey "$(wardend comet show-validator)"
 ```
 ```
