@@ -72,7 +72,7 @@ wget wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0
 ```
 ```
 mkdir -p $HOME/.warden/cosmovisor/genesis/bin/
-mv $HOME/wardend-v0.7.0-rc5-linux-amd64 $HOME/.warden/cosmovisor/genesis/bin/
+mv $HOME/wardend-v0.7.0-rc5-linux-amd64 $HOME/.warden/cosmovisor/genesis/bin/wardend
 ```
 ```
 sudo ln -s $HOME/.warden/cosmovisor/genesis $HOME/.warden/cosmovisor/current -f
