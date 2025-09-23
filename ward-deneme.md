@@ -63,6 +63,10 @@ cd wardenprotocol
 git checkout v0.7.0-rc5
 ```
 ```
+just wardend
+```
+//////////////////////////////
+```
 cd
 wget wget https://github.com/warden-protocol/wardenprotocol/releases/download/v0.7.0-rc5/wardend-v0.7.0-rc5-linux-amd64
 ```
