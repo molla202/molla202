@@ -118,7 +118,7 @@ wget -O $HOME/.warden/config/genesis.json "https://raw.githubusercontent.com/war
 ```
 ### Ayarlar.
 ```
-sed -i.bak 's|^\s*evm-chain-id\s*=.*|evm-chain-id = 123123-1|' $HOME/.warden/config/app.toml
+sed -i.bak 's|^\s*evm-chain-id\s*=.*|evm-chain-id = 123123|' $HOME/.warden/config/app.toml
 sed -i.bak 's|^\s*chain-id\s*=.*|chain-id = "testlaunch_123123-1"|' $HOME/.warden/config/client.toml
 sed -i.bak 's|^\s*seeds\s*=.*|seeds = ""|' $HOME/.warden/config/config.toml
 sed -i.bak 's|^\s*timeout_propose\s*=.*|timeout_propose = "1s"|' $HOME/.warden/config/config.toml
