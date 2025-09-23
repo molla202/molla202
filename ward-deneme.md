@@ -60,7 +60,7 @@ cargo install just
 ```
 git clone https://github.com/warden-protocol/wardenprotocol.git
 cd wardenprotocol
-git checkout v0.7.0-rc3
+git checkout v0.7.0-rc5
 ```
 ```
 just wardend
@@ -104,17 +104,17 @@ sudo systemctl enable wardend
 ```
 ### 🚧 İnit
 ```
-wardend init "isim-yaz" --chain-id mainnet
+wardend init "isim-yaz" --chain-id testlaunch_123123-1
 ```
 ### 🚧 Genesis addrbook
 ```
-wget -O $HOME/.warden/config/genesis.json "https://raw.githubusercontent.com/warden-protocol/networks/main/testnets/barra/genesis.json"
+wget -O $HOME/.warden/config/genesis.json "https://raw.githubusercontent.com/warden-protocol/networks/refs/heads/main/mainnet/init_genesis.json"
 ```
 ### Ayarlar.
 ```
-sed -i.bak 's|^\s*evm-chain-id\s*=.*|evm-chain-id = 9191|' $HOME/.warden/config/app.toml
+sed -i.bak 's|^\s*evm-chain-id\s*=.*|evm-chain-id = 123123-1|' $HOME/.warden/config/app.toml
 sed -i.bak 's|^\s*chain-id\s*=.*|chain-id = "barra_9191-1"|' $HOME/.warden/config/client.toml
-sed -i.bak 's|^\s*seeds\s*=.*|seeds = "c489c003b7c72298840bd4411ffc98ce13e07c27@54.194.136.183:26656,4564c91423a923eaba7982e69e33aec6185d362f@54.72.5.234:26656"|' $HOME/.warden/config/config.toml
+sed -i.bak 's|^\s*seeds\s*=.*|seeds = ""|' $HOME/.warden/config/config.toml
 sed -i.bak 's|^\s*timeout_propose\s*=.*|timeout_propose = "1s"|' $HOME/.warden/config/config.toml
 sed -i.bak 's|^\s*timeout_propose_delta\s*=.*|timeout_propose_delta = "200ms"|' $HOME/.warden/config/config.toml
 sed -i.bak 's|^\s*timeout_prevote\s*=.*|timeout_prevote = "500ms"|' $HOME/.warden/config/config.toml
@@ -130,8 +130,7 @@ sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "10award"|g' $HOME/.warden
 ```
 ### 🚧 Peer
 ```
-SEEDS="c489c003b7c72298840bd4411ffc98ce13e07c27@54.194.136.183:26656,4564c91423a923eaba7982e69e33aec6185d362f@54.72.5.234:26656"
-PEERS="6ac41e45f21c43edc92f836be96cae60438f6960@136.243.74.81:18656,d301d25b48ebebd1257d4944e31c3a9f11835f39@152.53.137.213:29656,a416f0a5a925a3cd40ceb166aeab43e71748c1dc@95.217.109.206:11956,baf98d88fdb1f6e8df1455fa04179aecdef7223a@23.88.5.169:10056,ea1aff097b9078b4b4d343b65dadd4eac6c57dc6@152.53.33.174:26656,30b1384f9f4ae8a1644dabb92ad4715a8b155404@51.79.78.121:26656,abd2849ba845fa044bf4756e6f03c55699f41e13@65.109.111.234:18656,7345881034f09a7b6e621bed6f803168139a9a62@167.235.14.83:13656,0d3f078c6bdf2c4791a844df2fa5b932cd83c1c7@65.109.69.119:18656,da8ea8a131db1c9ade0b9e1089adfd9330e3246f@65.109.78.246:22656,92bf4175907fe1348820595c2c01db411304ec62@135.181.59.112:12756,837d8748b4d5f6bd21f58a87fb5c5bcf9d60d0c7@65.108.121.227:13556,ff37394693e96769342c1710c46704293c109c61@46.4.91.76:32056,26998b58d8d411ddd3476787463d40ef0d4d8c2f@65.21.135.111:11656,9dd2caead4b41af780256da0c2282a0c84c8d7fa@193.26.157.178:18656,4564c91423a923eaba7982e69e33aec6185d362f@3.252.37.24:26656,cd51069eec220d84765b2c18ca08c463b503e607@152.53.104.182:22656,3184c3a25d51a249bebd1b837e05a223c90b65b7@65.109.117.219:18656,84376de171068c766d55f4cbc6dc9c5ddbfbd367@45.9.63.55:18656,b64af8e179c391423fff2b3596ab34ecbe21921e@152.53.151.154:18656,4efbc056eeefdb3d07c51a056af63d2b16426375@148.72.141.64:26652,85807889c06713452d5a330f7660bbf3106aa598@152.53.136.97:18656,4e451a841ff2c74d2a9ed77f87f7e633d89fd991@213.136.73.245:41656,9ced90025b0f4c47373c677bce12d96116b49355@65.108.111.225:60856,125f67a29e96c7c7fb6fbc7e6914207c2099f5f4@92.145.5.211:41656,77b1370e4c14496f44d9893e5b74ba5efba14d6b@162.55.224.194:26656,6089ea41e8003ebf81e22f1f78d7558c5e20b302@144.76.29.90:61256,f8fd5c186c01f568b3620d3554d0235b81770339@185.233.107.75:18656,6f1ba284e755d26ba3a28631ec6fb1d0c2e44847@152.53.138.77:18656,130ecc3bd7dcd99d0daa9216f760c5f804872ffc@167.235.178.134:27356,fb3c995373c0feee597dd3ed32e56cb5e0f0d1c2@65.108.120.161:26726,4f0c7c817e1a964a04b8bb490050669909fd2153@135.181.232.241:64656,9c7564f341a9ac63217b7bc8f1de65cbecb09f55@188.40.66.173:27356,7b4a217429f859deacdbe725f4fd6bdf989db5e0@193.203.15.135:26656,73e12eaef3fda57d881e49c22cf01902f86e7299@65.109.35.107:18656,e0ac809671933ee5c88da4f91446a3d0e811cdf2@147.93.157.69:18656"
+SEEDS=""
 sed -i -e "/^\[p2p\]/,/^\[/{s/^[[:space:]]*seeds *=.*/seeds = \"$SEEDS\"/}" \
        -e "/^\[p2p\]/,/^\[/{s/^[[:space:]]*persistent_peers *=.*/persistent_peers = \"$PEERS\"/}" $HOME/.warden/config/config.toml
 ```
@@ -233,7 +232,7 @@ cd $HOME
 # Create validator.json file
 ```
 echo ""{\"pubkey\":{\"@type\":\"/cosmos.crypto.ed25519.PubKey\",\"key\":\"$(wardend tendermint show-validator | grep -Po '\"key\":\s*\"\K[^"]*')\"},
-    \"amount\": \"1000000000000000000award\",
+    \"amount\": \"900000000000000000award\",
     \"moniker\": \"nodeismin\",
     \"identity\": \"keybasecode\",
     \"website\": \"\",
@@ -249,7 +248,7 @@ echo ""{\"pubkey\":{\"@type\":\"/cosmos.crypto.ed25519.PubKey\",\"key\":\"$(ward
 ```
 wardend tx staking create-validator validator.json \
     --from cuzdanismin \
-    --chain-id barra_9191-1 \
+    --chain-id testlaunch_123123-1 \
     --gas auto --gas-adjustment 1.6 --fees 250000000000000award \
     --node=http://localhost:11957
 ```
@@ -258,7 +257,7 @@ wardend tx staking create-validator validator.json \
 ### Delege 
 ```
 wardend tx staking delegate valoper-adresi miktar000000000000000000award \
---chain-id barra_9191-1 \
+--chain-id testlaunch_123123-1 \
 --from "cüzdan-adi" \
 --gas auto --gas-adjustment 1.6 --fees 250000000000000award \
 --node=http://localhost:11957
