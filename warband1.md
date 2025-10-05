@@ -134,7 +134,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"10\"/" $HOME/.warden/co
 ```
 ### 🚧 Snap
 ```
-wardend tendermint unsafe-reset-all --home $HOME/.warden
+wardend comet unsafe-reset-all --home $HOME/.warden
 
 
 cp $HOME/.warden/data/priv_validator_state.json $HOME/.warden/priv_validator_state.json.backup
