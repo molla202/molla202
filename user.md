@@ -4,9 +4,9 @@
 ### 🎪 Mainnet And important events
 - ⚡ Dymension 🏃 mainnet (foundation delegation) validator https://explorer.corenodehq.com/dymension/staking/dymvaloper1hnjgqfupe7xy5cmjffu56fkpu4uva9sluh7mkh
 - ⚡ Source netwrok 🏃 mainnet&testnet (foundation delegation) validator https://explorer.corenodehq.com/source/staking/sourcevaloper12xtalgwjakzdz4q8s05zkm0a3nkr5wlua77q2k
-- ⚡ Elys network selected mainnet genesis validator and now 🏃 run testnet https://explorer.corenodehq.com/ELYS%20Testnet/staking/elysvaloper1ut8qdryqjlrhgfup20yuvmgtpa5892gntn7n0g
+- ⚡ Tellor 🏃 https://explorer.corenodehq.xyz/Tellor-Mainnet/staking/tellorvaloper1esnxuz6scvcwxpjackqxyje5m5gg7awphlykn3
+- ⚡ Self Chain 🏃 https://explorer.selfchain.xyz/selfchain/staking/selfvaloper1v5el9f0fgq30dux2lt4nh98a0cjvnjtm7fc4r2
 - ⚡ Tangle mainnet&testnet 🏃 validator https://polkadot.js.org/apps/?rpc=wss://rpc.tangle.tools#/staking
-- ⚡ Newrl mainnet&testnet 🏃 validator
 - ⚡ Pactus mainnet&testnet 🏃 validator https://pacviewer.com/address/pc1pywlzu7a6aptz88fl4zh57hf6cykaqqgvmke9fq
 - ⚡ Avail Turing Testnet 🏃 validator https://explorer.avail.so/?rpc=wss%3A%2F%2Fturing-rpc.avail.so%2Fws&light=https%3A%2F%2Fapi.lightclient.turing.avail.so%2Fv1#/staking
 
