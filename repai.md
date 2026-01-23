@@ -1,25 +1,26 @@
-<h1 align="center"> Lumera
+<h1 align="center"> RAI
 
-
-
-
-![image](https://github.com/user-attachments/assets/291dc80d-e97a-4941-b9be-ac0c39d2278c)
 
 </h1>
+
+<img width="939" height="714" alt="image" src="https://github.com/user-attachments/assets/65d091ad-2604-44eb-aae0-f59fe63309f5" />
+
+
+
 
  * [Topluluk kanalımız](https://t.me/corenodechat)<br>
  * [Topluluk Twitter](https://twitter.com/corenodeHQ)<br>
 
 
-### Public RPC
+```
+EVM ağı ekleyin
 
-
-
-### Explorer
-
-### Faucet
-
-https://faucet.testnet.lumera.io/
+Network Name: Republic Testnet
+RPC URL: https://evm-rpc.republicai.io
+Chain ID: 77701
+Currency Symbol: RAI
+Block Explorer URL: https://explorer.republicai.io
+```
 
 ## 💻 Sistem Gereksinimleri
 | Bileşenler | Minimum Gereksinimler | 
@@ -28,7 +29,7 @@ https://faucet.testnet.lumera.io/
 | RAM	| 8+ GB |
 | Storage	| 400 GB SSD |
 
-
+**//////UBUNTU 24//////**
 
 
 ### 🚧Gerekli kurulumlar
