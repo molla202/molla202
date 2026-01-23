@@ -53,6 +53,7 @@ go version
 cd $HOME
 mkdir -p $HOME/.republicd/cosmovisor/genesis/bin
 curl -L "https://media.githubusercontent.com/media/RepublicAI/networks/main/testnet/releases/v0.1.0/republicd-linux-amd64" -o $HOME/.republicd/cosmovisor/genesis/bin/republicd
+chmod +x $HOME/.republicd/cosmovisor/genesis/bin/republicd
 ```
 ```
 sudo ln -s $HOME/.republicd/cosmovisor/genesis $HOME/.republicd/cosmovisor/current -f
@@ -96,6 +97,9 @@ republicd init "MONIKER" --chain-id raitestnet_77701-2
 ### 🚧Genesis ve addrbook
 ```
 curl -L https://raw.githubusercontent.com/RepublicAI/networks/main/testnet/genesis.json > $HOME/.republicd/config/genesis.json
+```
+```
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"250000000arai\"/" $HOME/.republicd/config/app.toml
 ```
 ### 🚧Port
 ```
