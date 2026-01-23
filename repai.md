@@ -87,7 +87,7 @@ EOF
 ### 🚧Etkinleştirelim
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable lumerad
+sudo systemctl enable republicd
 ```
 ### 🚧İnit
 ```
