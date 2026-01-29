@@ -73,7 +73,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start
+ExecStart=$(which cosmovisor) run start --home $HOME/.republicd
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
@@ -93,7 +93,7 @@ sudo systemctl enable republicd
 ```
 ### 🚧İnit
 ```
-republicd init "MONIKER" --chain-id raitestnet_77701-2
+republicd init "MONIKER" --chain-id raitestnet_77701-2 --home $HOME/.republicd
 ```
 ### 🚧Genesis ve addrbook
 ```
