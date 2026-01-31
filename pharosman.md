@@ -345,3 +345,10 @@ Connected to endpoint
 Validator exit tx: 0xfedcba0987654321...
 Validator exit success
 ```
+
+### Enable Pruning
+For Binary Deployment:
+```
+cd $HOME/data/$WORKSPACE/bin
+LD_PRELOAD=./libevmone.so ./pharos_cli prune --c ../pharos.conf --enable_auto_prune
+```
