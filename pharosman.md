@@ -5,14 +5,11 @@
 ## 💻 Sistem Gereksinimleri
 | Bileşenler | Minimum Gereksinimler | 
 | ------------ | ------------ |
-| CPU |	4|
-| RAM	| 8+ GB |
-| Storage	| 400 GB SSD |
+| CPU |	32 cores, 2.8GHz or faster, AMD Milan EPYC or Intel Xeon Platinum |
+| RAM	| 256 GB |
+| Storage	| 5 TB SSD with at least 350MiB/s bandwidth and 30000 IOPS |
 
-### Open Files Limit
-```
-ulimit -n ≥ 655350
-```
+
 ### 1. Create working directory and download binary package
 
 ```
