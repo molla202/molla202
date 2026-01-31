@@ -168,7 +168,7 @@ After=network.target
 [Service]
 Type=simple
 User=$USER
-WorkingDirectory=$HOME/data/$WORKSPACE
+WorkingDirectory=$HOME/data/$WORKSPACE/bin
 Environment="CONSENSUS_KEY_PWD=$(cat $HOME/data/$WORKSPACE/.password)"
 Environment="PORTAL_SSL_PWD=$(cat $HOME/data/$WORKSPACE/.password)"
 Environment="LD_PRELOAD=$HOME/data/$WORKSPACE/bin/libevmone.so"
