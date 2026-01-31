@@ -73,7 +73,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start --home $HOME/.republicd
+ExecStart=$(which cosmovisor) run start --home $HOME/.republicd --chain-id raitestnet_77701-1
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
