@@ -66,15 +66,12 @@ wget https://github.com/PharosNetwork/ops/releases/latest/download/ops-linux-amd
 ```
 chmod +x ops
 ```
-```
-sudo ln -sf $HOME/data/pharos/ops /usr/local/bin/ops
-```
 ### 4. Set password for key encryption
 Set a password that will be used to encrypt your node's cryptographic keys:
 
 
 ```
-ops set-password YOUR_SECURE_PASSWORD
+./ops set-password YOUR_SECURE_PASSWORD
 ```
 Important:
 
@@ -89,7 +86,7 @@ Generate the domain and stabilizing keys for your node:
 
 
 ```
-ops generate-keys
+./ops generate-keys
 ```
 This will create the following files in the ./keys/ directory:
 ```
@@ -101,12 +98,25 @@ stabilizing.key - BLS12-381 private key
 
 stabilizing.pub - BLS12-381 public key
 ```
+
+### 5B Get Node ID
+Get the Node ID from your domain public key:
+
+```
+./ops get-nodeid
+```
+This calculates the SHA256 hash of the domain public key (with prefix stripped) and displays the Node ID.
+
+Options:
+
+--keys-dir - Directory containing domain.pub (default: ./keys)
+
 ### 6. Bootstrap the node
 Initialize the node with genesis state:
 
 
 ```
-ops bootstrap --config $HOME/data/pharos/pharos.conf
+./ops bootstrap --config ./pharos.conf
 ```
 This command will:
 
@@ -116,12 +126,12 @@ Initialize the genesis block
 
 Prepare the node for first startup
 
-### 7. Start the node
+### 7. Start the node Manuel
 Start the Pharos node service:
 
 
 ```
-ops start --config ./pharos.conf
+./ops start --config ./pharos.conf
 ```
 The node will start in daemon mode and begin syncing with the network.
 
@@ -131,7 +141,19 @@ Check the logs to verify the node is running:
 ```
 tail -f $HOME/data/pharos/log/aldaba.log
 ```
-### 8. (Optional) Setup systemd service
+
+### 7B Stop Node
+Stop the running node:
+
+* Graceful stop
+```
+ops stop
+```
+* Force stop
+```
+ops stop --force
+```
+### 8. Setup systemd service
 For production deployments, it's recommended to manage the Pharos node with systemd.
 
 Create a systemd service file:
@@ -146,7 +168,7 @@ After=network.target
 [Service]
 Type=simple
 User=$USER
-WorkingDirectory=/$HOMEdata/$WORKSPACE/bin
+WorkingDirectory=$HOME/data/$WORKSPACE
 Environment="CONSENSUS_KEY_PWD=$(cat $HOME/data/$WORKSPACE/.password)"
 Environment="PORTAL_SSL_PWD=$(cat $HOME/data/$WORKSPACE/.password)"
 Environment="LD_PRELOAD=$HOME/data/$WORKSPACE/bin/libevmone.so"
@@ -170,7 +192,7 @@ Enable and start the service:
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable pharosd
-sudo systemctl start pharosd
+sudo systemctl restart pharosd
 ```
 Check service status:
 
@@ -224,4 +246,102 @@ Backup important files: Backup keys/, .password, and pharos.conf
 Firewall configuration: Ensure required ports are open (18100, 19000, 20000)
 
 Regular updates: Keep your node software up to date with latest releases
+```
+
+
+### Validator Management
+Register as Validator
+Register your node as a validator on the network:
+
+Set private key via environment variable (required)
+```
+cd
+```
+```
+export WORKSPACE=pharos
+```
+```
+cd $HOME/data/$WORKSPACE
+```
+```
+export VALIDATOR_PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
+```
+```
+./ops add-validator \
+  --domain-label my-validator \
+  --domain-endpoint tcp://47.84.7.245:19000 \
+  --stake 1000000
+```
+```
+Environment Variable (Required):
+
+VALIDATOR_PRIVATE_KEY - Private key for transaction signing (hex format, with or without 0x prefix)
+Required Parameters:
+
+--domain-label - Validator name/description
+--domain-endpoint - Your validator's public endpoint URL
+For IP:PORT format: must use tcp:// prefix (e.g., tcp://127.0.0.1:19000)
+For domain names: can use any protocol (e.g., https://pharos.validator.com)
+Optional Parameters:
+
+--rpc-endpoint - RPC endpoint to send transaction (default: http://127.0.0.1:18100)
+--stake - Stake amount in tokens (default: 1000000)
+--domain-pubkey - Path to domain public key (default: ./keys/domain.pub)
+--stabilizing-pubkey - Path to stabilizing public key (default: ./keys/stabilizing.pub)
+Example:
+
+export VALIDATOR_PRIVATE_KEY=abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890
+
+./ops add-validator \
+  --rpc-endpoint http://127.0.0.1:18100 \
+  --domain-label golang-validator \
+  --domain-endpoint tcp://127.0.0.1:19000 \
+  --stake 10000000
+Output:
+
+Adding validator...
+Account address: 0x1234567890abcdef...
+Connected to endpoint
+Stake amount: 10000000 tokens (10000000000000000000000000 wei)
+Validator register tx: 0xabcdef1234567890...
+Validator register success
+Exit Validator
+Request to exit from the validator set:
+```
+### Exit Validator
+```
+cd
+```
+```
+export WORKSPACE=pharos
+```
+```
+cd $HOME/data/$WORKSPACE
+```
+```
+export VALIDATOR_PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
+```
+```
+./ops exit-validator
+```
+```
+VALIDATOR_PRIVATE_KEY - Private key for transaction signing (hex format, with or without 0x prefix)
+Optional Parameters:
+
+--rpc-endpoint - RPC endpoint to send transaction (default: http://127.0.0.1:18100)
+--domain-pubkey - Path to domain public key (default: ./keys/domain.pub)
+Example:
+
+export VALIDATOR_PRIVATE_KEY=abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890
+
+./ops exit-validator \
+  --rpc-endpoint http://127.0.0.1:18100
+Output:
+
+Exiting validator...
+Account address: 0x1234567890abcdef...
+Pool ID: abc123def456789...
+Connected to endpoint
+Validator exit tx: 0xfedcba0987654321...
+Validator exit success
 ```
