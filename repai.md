@@ -91,6 +91,22 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable republicd
 ```
+### Giblic ayar
+```
+cd $HOME
+wget -O glibc-2.39-ubuntu24.tar.gz https://raw.githubusercontent.com/coinsspor/coinsspor/main/glibc-2.39-ubuntu24.tar.gz
+tar -xzvf glibc-2.39-ubuntu24.tar.gz
+```
+```
+sudo mkdir -p /opt/glibc-2.39/lib
+sudo mv glibc-transfer/* /opt/glibc-2.39/lib/
+```
+```
+REP_PATH=$(which republicd)
+```
+```
+patchelf --set-interpreter /opt/glibc-2.39/lib/ld-linux-x86-64.so.2 --set-rpath /opt/glibc-2.39/lib $REP_PATH
+```
 ### 🚧İnit
 ```
 republicd init "MONIKER" --chain-id raitestnet_77701-2 --home $HOME/.republicd
