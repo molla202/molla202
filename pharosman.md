@@ -147,11 +147,11 @@ Stop the running node:
 
 * Graceful stop
 ```
-ops stop
+./ops stop
 ```
 * Force stop
 ```
-ops stop --force
+./ops stop --force
 ```
 ### 8. Setup systemd service
 For production deployments, it's recommended to manage the Pharos node with systemd.
