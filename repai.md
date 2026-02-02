@@ -73,7 +73,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which cosmovisor) run start --home $HOME/.republicd --chain-id raitestnet_77701-2
+ExecStart=$(which cosmovisor) run start --home $HOME/.republicd --chain-id raitestnet_77701-1
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
@@ -109,7 +109,7 @@ patchelf --set-interpreter /opt/glibc-2.39/lib/ld-linux-x86-64.so.2 --set-rpath 
 ```
 ### 🚧İnit
 ```
-republicd init "MONIKER" --chain-id raitestnet_77701-2 --home $HOME/.republicd
+republicd init "MONIKER" --chain-id raitestnet_77701-1 --home $HOME/.republicd
 ```
 ### 🚧Genesis ve addrbook
 ```
@@ -177,30 +177,45 @@ republicd keys add cüzdan-adi-yaz --recover
 ### Validator oluştur
 ```
 cd $HOME
+
+Copy
+PUBKEY=$(jq -r '.pub_key.value' $HOME/.republicd/config/priv_validator_key.json)
+
+cat > validator.json << EOF
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"$PUBKEY"},
+  "amount": "20000000000000000000arai",
+  "moniker": "validator ismin",
+  "identity": "keybaseidlazimyoksabosbirak",
+  "website": "web sitesi yoksa twitter link koy",
+  "security": "mailadresi",
+  "details": "validatoraciklaması",
+  "commission-rate": "0.05",
+  "commission-max-rate": "0.15",
+  "commission-max-change-rate": "0.02",
+  "min-self-delegation": "1"
+}
+EOF
 ```
 ```
-republicd tx staking create-validator \
-  --amount=1000000000000000000000arai \
-  --pubkey=$(republicd comet show-validator) \
-  --moniker="<your-moniker>" \
-  --chain-id=raitestnet_77701-2 \
-  --commission-rate="0.10" \
-  --commission-max-rate="0.20" \
-  --commission-max-change-rate="0.01" \
-  --min-self-delegation="1" \
-  --gas=auto \
-  --gas-adjustment=1.5 \
-  --gas-prices="250000000arai" \
-  --from=<key-name>
+Copy
+republicd tx staking create-validator validator.json \
+--from $REPUBLIC_WALLET \
+--chain-id raitestnet_77701-1 \
+--gas auto \
+--gas-adjustment 1.5 \
+--gas-prices "1000000000arai" \
+--node tcp://localhost:38657 \
+-y
 ```
 
 ### unjail
 ```
-republicd tx slashing unjail --from wallet --chain-id raitestnet_77701-2 -gas=auto --gas-adjustment=1.5 --gas-prices=250000000arai
+republicd tx slashing unjail --from wallet --chain-id raitestnet_77701-1 -gas=auto --gas-adjustment=1.5 --gas-prices=250000000arai
 ```
 ### kendine stake
 ```
-republicd tx staking delegate $(republicd keys show wallet --bech val -a) 1000000arai --from wallet --chain-id raitestnet_77701-2 --gas=auto --gas-adjustment=1.5 --gas-prices=250000000arai
+republicd tx staking delegate $(republicd keys show wallet --bech val -a) 1000000arai --from wallet --chain-id raitestnet_77701-1 --gas=auto --gas-adjustment=1.5 --gas-prices=250000000arai
 ```
 
 ### Delete node
