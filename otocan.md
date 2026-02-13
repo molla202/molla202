@@ -1,5 +1,8 @@
 # Evrensel Cosmos Auto-Compound Script Kullanım Kılavuzu
 
+```bash
+wget https://raw.githubusercontent.com/molla202/molla202/refs/heads/main/cosmos_auto_compound.py
+```
 ## 🌟 Özellikler
 
 Bu script tüm Cosmos SDK tabanlı blockchain'ler için kullanılabilir:
