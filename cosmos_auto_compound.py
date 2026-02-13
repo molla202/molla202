@@ -130,9 +130,22 @@ class ConfigManager:
         config['reserve_amount'] = int(reserve_display * (10 ** config['decimals']))
         
         # Gas fees
-        default_gas = f"250000{config['base_denom']}"
-        gas_input = input(f"Gas fees [{default_gas}]: ").strip()
-        config['gas_fees'] = gas_input if gas_input else default_gas
+        print("\nGas Fees Ayarları:")
+        print("  Örnekler:")
+        print("    - Warden (18 decimals): 250000000000000award")
+        print("    - Cosmos (6 decimals):  5000uatom")
+        print("    - Osmosis (6 decimals): 5000uosmo")
+        
+        # Decimal sayısına göre önerilen gas fee
+        if config['decimals'] == 18:
+            suggested_gas = f"250000000000000{config['base_denom']}"
+        elif config['decimals'] == 6:
+            suggested_gas = f"5000{config['base_denom']}"
+        else:
+            suggested_gas = f"250000{config['base_denom']}"
+        
+        gas_input = input(f"Gas fees [{suggested_gas}]: ").strip()
+        config['gas_fees'] = gas_input if gas_input else suggested_gas
         
         # Gas adjustment
         config['gas_adjustment'] = "1.6"
@@ -168,6 +181,21 @@ class CosmosAutoCompound:
         self.gas_adjustment = config.get('gas_adjustment', '1.6')
         self.wallet_password = wallet_password
         self.project_name = config.get('project_name', 'Cosmos')
+        
+        # Gas fee miktarını parse et
+        self.gas_fee_amount = self._parse_gas_fee(self.gas_fees)
+    
+    def _parse_gas_fee(self, gas_fees_string):
+        """Gas fee string'inden sayısal değeri çıkar (örn: '250000award' -> 250000)"""
+        try:
+            # Sayısal kısmı al
+            amount_str = ''.join([c for c in gas_fees_string if c.isdigit()])
+            if amount_str:
+                return int(amount_str)
+            return 0
+        except Exception as e:
+            logging.warning(f"Gas fee parse edilemedi: {e}, varsayılan 0 kullanılıyor")
+            return 0
         
     def run_command(self, cmd, stdin_input=None):
         """Komut çalıştır ve sonucu döndür"""
@@ -319,28 +347,40 @@ class CosmosAutoCompound:
             logging.warning("⚠️  Bakiye bulunamadı")
             return False
         
-        # 4. Stake edilecek miktarı hesapla (bakiye - reserve)
-        if balance <= self.reserve_amount:
+        # 4. Gas fee için buffer hesapla (3x güvenli olması için)
+        gas_buffer = self.gas_fee_amount * 3
+        minimum_required = self.reserve_amount + gas_buffer
+        
+        # 5. Bakiye kontrolü
+        if balance <= minimum_required:
             reserve_display = self.format_amount(self.reserve_amount)
             balance_display = self.format_amount(balance)
-            logging.warning(f"Bakiye reserve miktarından az veya eşit")
+            gas_display = self.format_amount(gas_buffer)
+            logging.warning(f"⚠️  Bakiye yetersiz")
             logging.info(f"   Bakiye: {balance_display:.6f} {self.display_denom}")
             logging.info(f"   Reserve: {reserve_display:.6f} {self.display_denom}")
+            logging.info(f"   Gas Buffer: {gas_display:.6f} {self.display_denom}")
+            logging.info(f"   Minimum Gerekli: {self.format_amount(minimum_required):.6f} {self.display_denom}")
             return False
         
-        stake_amount = balance - self.reserve_amount
+        # 6. Stake edilecek miktarı hesapla (bakiye - reserve - gas buffer)
+        stake_amount = balance - minimum_required
         reserve_display = self.format_amount(self.reserve_amount)
         stake_display = self.format_amount(stake_amount)
         balance_display = self.format_amount(balance)
+        gas_display = self.format_amount(gas_buffer)
         
         logging.info(f"Hesaplamalar:")
         logging.info(f"   Toplam Bakiye: {balance_display:.6f} {self.display_denom}")
         logging.info(f"   Reserve (Kalacak): {reserve_display:.6f} {self.display_denom}")
+        logging.info(f"   Gas Buffer (3x): {gas_display:.6f} {self.display_denom}")
         logging.info(f"   Stake Edilecek: {stake_display:.6f} {self.display_denom}")
         
-        # 5. Stake et
+        # 7. Stake et
         if stake_amount > 0:
             return self.delegate_tokens(stake_amount)
+        else:
+            logging.warning("⚠️  Stake edilecek miktar yok (negatif veya sıfır)")
         
         return False
 
