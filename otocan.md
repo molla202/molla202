@@ -3,6 +3,7 @@
 ```bash
 wget https://raw.githubusercontent.com/molla202/molla202/refs/heads/main/cosmos_auto_compound.py
 ```
+
 ## 🌟 Özellikler
 
 Bu script tüm Cosmos SDK tabanlı blockchain'ler için kullanılabilir:
@@ -107,6 +108,7 @@ Base denom: award
 Display denom: WARD
 Decimals: 18
 Reserve: 2.0 WARD
+Gas fees: 250000000000000award  # 18 decimals için
 ```
 
 ### Cosmos Hub
@@ -118,6 +120,7 @@ Base denom: uatom
 Display denom: ATOM
 Decimals: 6
 Reserve: 0.1 ATOM
+Gas fees: 5000uatom  # 6 decimals için
 ```
 
 ### Osmosis
@@ -224,6 +227,21 @@ sudo systemctl status cosmos-autocompound
 - ⚠️ Düzenli olarak log dosyalarını kontrol edin
 
 ## 🐛 Sorun Giderme
+
+### Problem: "insufficient funds" hatası
+Bu hata stake işlemi sırasında gas fee için yeterli bakiye kalmadığında oluşur.
+
+**Çözüm:**
+- Script otomatik olarak gas fee için 3x buffer ayırır
+- Reserve miktarınızı artırın veya
+- Gas fees değerini düşürün (config dosyasından)
+
+```bash
+# Config dosyasını düzenleyin
+nano cosmos_config.json
+# "gas_fees" değerini düşürün
+# "reserve_amount" değerini artırın
+```
 
 ### Problem: "Binary bulunamadı"
 ```bash
