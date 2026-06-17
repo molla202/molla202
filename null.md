@@ -131,7 +131,7 @@ LimitNOFILE=65536
 ExecStart=$NODE_HOME/bin/nulla-relay \\
   --chain $NODE_HOME/config/nulla-mainnet.raw.json \\
   --validator \\
-  --warp \\
+  --sync warp \\
   --name "$NODE_NAME" \\
   --base-path $NODE_HOME/data \\
   --keystore-path $NODE_HOME/keystore \\
