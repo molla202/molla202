@@ -38,8 +38,23 @@ mkdir -p "$NODE_HOME/config"
 mkdir -p "$NODE_HOME/data"
 mkdir -p "$NODE_HOME/keystore"
 ```
+3. Download Binaries & Create System Symlinks
+We download the official network binaries directly into your isolated environment, apply executable permissions, and link them to /usr/local/bin via symbolic links. This allows the system and Polkadot sub-workers to discover each other globally.
 
-3. Move Binaries & Create System Symlinks
+```
+wget -O "$NODE_HOME/bin/nulla-relay" "https://github.com/NullaZK/mainnet/releases/download/v1/nulla-relay"
+wget -O "$NODE_HOME/bin/polkadot-execute-worker" "https://github.com/NullaZK/mainnet/releases/download/v1/polkadot-execute-worker"
+wget -O "$NODE_HOME/bin/polkadot-prepare-worker" "https://github.com/NullaZK/mainnet/releases/download/v1/polkadot-prepare-worker"
+```
+```
+chmod +x "$NODE_HOME/bin/"*
+```
+```
+sudo ln -sf "$NODE_HOME/bin/nulla-relay" /usr/local/bin/nulla-relay
+sudo ln -sf "$NODE_HOME/bin/polkadot-prepare-worker" /usr/local/bin/polkadot-prepare-worker
+sudo ln -sf "$NODE_HOME/bin/polkadot-execute-worker" /usr/local/bin/polkadot-execute-worker
+```
+3b. Move Binaries & Create System Symlinks
 Copy the network binaries from the repository into your isolated environment, then link them to /usr/local/bin using symbolic links. This allows the system and sub-workers to discover them globally.
 
 ```
