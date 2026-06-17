@@ -54,25 +54,13 @@ sudo ln -sf "$NODE_HOME/bin/nulla-relay" /usr/local/bin/nulla-relay
 sudo ln -sf "$NODE_HOME/bin/polkadot-prepare-worker" /usr/local/bin/polkadot-prepare-worker
 sudo ln -sf "$NODE_HOME/bin/polkadot-execute-worker" /usr/local/bin/polkadot-execute-worker
 ```
-3b. Move Binaries & Create System Symlinks
-Copy the network binaries from the repository into your isolated environment, then link them to /usr/local/bin using symbolic links. This allows the system and sub-workers to discover them globally.
-
-```
-cp binaries/nulla-relay             "$NODE_HOME/bin/"
-cp binaries/polkadot-prepare-worker "$NODE_HOME/bin/"
-cp binaries/polkadot-execute-worker "$NODE_HOME/bin/"
-chmod +x "$NODE_HOME/bin/"*
-```
 ```
 sudo ln -sf "$NODE_HOME/bin/nulla-relay" /usr/local/bin/nulla-relay
 sudo ln -sf "$NODE_HOME/bin/polkadot-prepare-worker" /usr/local/bin/polkadot-prepare-worker
 sudo ln -sf "$NODE_HOME/bin/polkadot-execute-worker" /usr/local/bin/polkadot-execute-worker
 ```
-4. Setup Chain Specification & Node Key
-Move the network configuration file and generate your unique node key inside your data directory.
-
 ```
-cp chainspec/nulla-mainnet.raw.json "$NODE_HOME/config/"
+wget -O "$NODE_HOME/config/nulla-mainnet.raw.json" "https://raw.githubusercontent.com/NullaZK/mainnet/refs/heads/main/chainspec/nulla-mainnet.raw.json"
 chmod 644 "$NODE_HOME/config/nulla-mainnet.raw.json"
 ```
 ### Generate Node Key
@@ -80,16 +68,17 @@ chmod 644 "$NODE_HOME/config/nulla-mainnet.raw.json"
 "$NODE_HOME/bin/nulla-relay" key generate-node-key \
   --file "$NODE_HOME/data/node.key"
 ```
+- Display your Peer ID (Share this if you want to be added as a bootnode)
 ```
 "$NODE_HOME/bin/nulla-relay" key inspect-node-key --file "$NODE_HOME/data/node.key"
 ```
 5. Import Validator Session Keys
 Set up your security mnemonic phrases and inject your session keys into your isolated keystore folder.
 
-NOT: 12 kelime den oluşan bir cüzdan kelimeleri girin.
+NOT: 24 kelime den oluşan bir cüzdan kelimeleri girin.
 ```
-MNEMONIC="your twelve word mnemonic phrase here"
-KEYSTORE="$NODE_HOME/keystore"
+export MNEMONIC="buraya kendi yirmi dört adet gizli kelimelerini yazacaksın"
+export KEYSTORE="$NODE_HOME/keystore"
 ```
 ```
 chmod 700 "$KEYSTORE"
@@ -142,6 +131,7 @@ LimitNOFILE=65536
 ExecStart=$NODE_HOME/bin/nulla-relay \\
   --chain $NODE_HOME/config/nulla-mainnet.raw.json \\
   --validator \\
+  --warp \\
   --name "$NODE_NAME" \\
   --base-path $NODE_HOME/data \\
   --keystore-path $NODE_HOME/keystore \\
@@ -160,20 +150,14 @@ Now that everything is cleanly configured in your custom folder, reload systemd,
 
 ```
 sudo systemctl daemon-reload
-```
-```
 sudo systemctl enable nullad
-```
-```
 sudo systemctl start nullad
 ```
-Useful Management Commands
+- Useful Management Commands
 
 Check Node Status: 
 ```
-sudo 
-```
-systemctl status nullad
+sudo systemctl status nullad
 ```
 View Live Logs: 
 ```
