@@ -55,11 +55,6 @@ sudo ln -sf "$NODE_HOME/bin/polkadot-prepare-worker" /usr/local/bin/polkadot-pre
 sudo ln -sf "$NODE_HOME/bin/polkadot-execute-worker" /usr/local/bin/polkadot-execute-worker
 ```
 ```
-sudo ln -sf "$NODE_HOME/bin/nulla-relay" /usr/local/bin/nulla-relay
-sudo ln -sf "$NODE_HOME/bin/polkadot-prepare-worker" /usr/local/bin/polkadot-prepare-worker
-sudo ln -sf "$NODE_HOME/bin/polkadot-execute-worker" /usr/local/bin/polkadot-execute-worker
-```
-```
 wget -O "$NODE_HOME/config/nulla-mainnet.raw.json" "https://raw.githubusercontent.com/NullaZK/mainnet/refs/heads/main/chainspec/nulla-mainnet.raw.json"
 chmod 644 "$NODE_HOME/config/nulla-mainnet.raw.json"
 ```
