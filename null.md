@@ -20,6 +20,7 @@ Before you begin the installation, make sure your cloned repository folder looks
 
 - README.md
 
+- [Explorer](https://www.nullascan.com/#/explorer)
 ### Step-by-Step Installation
 1. Define Environment Variables
 To avoid path mistakes during setup, define your workspace variables. By default, everything will be stored safely under your user's home directory (~/nulla-node).
