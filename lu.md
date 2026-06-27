@@ -147,7 +147,7 @@ sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persisten
 
 ### 🚧Pruning
 ```
-sed -i -e "s/^pruning *=.*/pruning = \"nothing\"/" $HOME/.lumera/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"custom\"/" $HOME/.lumera/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.lumera/config/app.toml
 sed -i 's|^indexer *=.*|indexer = "null"|' $HOME/.lumera/config/config.toml
 ```
