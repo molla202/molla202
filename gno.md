@@ -1,4 +1,13 @@
+<div align="center">
 
+<img width="1200" height="630" alt="og-gnoland" src="https://github.com/user-attachments/assets/a7d172d8-dea4-4cfa-88ed-edddc107f9a7" />
+
+[![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04+-E95420?style=flat-square&logo=ubuntu&logoColor=white)](https://ubuntu.com)
+[![Gnoland](https://img.shields.io/badge/Gnoland-Test13-A259FF?style=flat-square)](https://gno.land)
+[![Branch](https://img.shields.io/badge/Branch-chain%2Ftest13-brightgreen?style=flat-square)](https://github.com/gnolang/gno)
+[![Chain ID](https://img.shields.io/badge/Chain%20ID-test--13-blue?style=flat-square)](https://docs.gno.land)
+
+</div>
 
 ## Hardware Requirements
 
