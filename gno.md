@@ -119,6 +119,12 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable gnoland
 ```
-
-
+```
 sudo systemctl restart gnoland && sudo journalctl -u gnoland -f
+```
+
+### Vali Register
+```
+gnoland secrets get validator_key
+```
+NOT: save pubkey. `https://gno.satai.0xgen.online/register`
