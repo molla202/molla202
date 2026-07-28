@@ -232,7 +232,12 @@ sed -i "s|^rpc-dial-url *=.*|rpc-dial-url = \"http://localhost:${OG_PORT}551\"|"
 sudo systemctl disable geth
 sudo rm -f /etc/systemd/system/geth.service
 ```
+### port 
 
+```
+echo "export OG_PORT=59" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
 ### Yeni reth.service dosyasını oluştur
 
 ```bash
@@ -272,6 +277,8 @@ EOF
 
 ### Güncellenmiş 0gchaind.service dosyasını oluştur
 
+ETH_RPC_URL=https://
+
 ```bash
 sudo tee /etc/systemd/system/0gchaind.service > /dev/null <<EOF
 [Unit]
@@ -295,7 +302,7 @@ ExecStart=$HOME/go/bin/0gchaind start \\
   --chaincfg.restaking.symbiotic-rpc-dial-url $ETH_RPC_URL \\
   --chaincfg.restaking.symbiotic-get-logs-block-range 1 \\
   --home=$HOME/.0gchaind/0g-home/0gchaind-home \\
-  --p2p.external_address=\$(curl -s http://ipv4.icanhazip.com):${OG_PORT}656
+  --p2p.external_address=$(curl -s http://ipv4.icanhazip.com):${OG_PORT}656
 Restart=always
 RestartSec=5
 LimitNOFILE=65535
