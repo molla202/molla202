@@ -3,10 +3,6 @@
 CHROMIUM_DIR="$HOME/chromium"
 CRED_FILE="$CHROMIUM_DIR/credentials.txt"
 
-show_logo() {
-  curl -s https://raw.githubusercontent.com/DiscoverMyself/Ramanode-Guides/main/logo.sh | bash
-}
-
 print_banner() {
   echo -e '\e[0;32m'
   echo " ▄████████  ▄██████▄     ▄████████    ▄████████     ███▄▄▄▄    ▄██████▄  ████████▄     ▄████████ "
